@@ -87,10 +87,12 @@
     return;
   }
   
-  NSError *error = nil;
-  if (![[self mainThreadManagedObjectContext] save:&error]) {
-    if (handler) handler (NO, error);
-    return; //fail early and often
+  if ([[self mainThreadManagedObjectContext] hasChanges]) {
+    NSError *mainThreadSaveError = nil;
+    if (![[self mainThreadManagedObjectContext] save:&mainThreadSaveError]) {
+      if (handler) handler (NO, mainThreadSaveError);
+      return; //fail early and often
+    }
   }
   
   [[self saveManagedObjectContext] performBlock:^{ //private context must be on its on queue
