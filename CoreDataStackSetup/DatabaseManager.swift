@@ -26,7 +26,7 @@ class DatabaseManager {
     let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
     dispatch_async(queue, { () -> Void in
       let folderUrls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-      let folderUrl = folderUrls[folderUrls.count-1] as NSURL
+      let folderUrl = folderUrls[folderUrls.count-1] as! NSURL
       let dataFileUrl = folderUrl.URLByAppendingPathComponent("MyDataFile.sqlite")
     
       var error: NSError? = nil
