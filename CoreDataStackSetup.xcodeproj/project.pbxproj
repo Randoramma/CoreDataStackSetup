@@ -15,6 +15,7 @@
 		F40BB3C81AA71AB9005EFFA3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F40BB3C71AA71AB9005EFFA3 /* Images.xcassets */; };
 		F40BB3CB1AA71AB9005EFFA3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F40BB3C91AA71AB9005EFFA3 /* LaunchScreen.xib */; };
 		F40BB3E21AA71AE8005EFFA3 /* OTSDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F40BB3E11AA71AE8005EFFA3 /* OTSDatabaseManager.m */; };
+		F4A86D001ABC418D00959E15 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A86CFF1ABC418D00959E15 /* DatabaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		F40BB3CA1AA71AB9005EFFA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F40BB3E01AA71AE8005EFFA3 /* OTSDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTSDatabaseManager.h; sourceTree = "<group>"; };
 		F40BB3E11AA71AE8005EFFA3 /* OTSDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTSDatabaseManager.m; sourceTree = "<group>"; };
+		F4A86CFE1ABC418D00959E15 /* CoreDataStackSetup-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreDataStackSetup-Bridging-Header.h"; sourceTree = "<group>"; };
+		F4A86CFF1ABC418D00959E15 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,7 @@
 				F40BB3C21AA71AB9005EFFA3 /* OTSMainViewController.m */,
 				F40BB3E01AA71AE8005EFFA3 /* OTSDatabaseManager.h */,
 				F40BB3E11AA71AE8005EFFA3 /* OTSDatabaseManager.m */,
+				F4A86CFF1ABC418D00959E15 /* DatabaseManager.swift */,
 				F40BB3C41AA71AB9005EFFA3 /* Main.storyboard */,
 				F40BB3C71AA71AB9005EFFA3 /* Images.xcassets */,
 				F40BB3C91AA71AB9005EFFA3 /* LaunchScreen.xib */,
@@ -81,6 +85,7 @@
 		F40BB3B71AA71AB9005EFFA3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F4A86CFE1ABC418D00959E15 /* CoreDataStackSetup-Bridging-Header.h */,
 				F40BB3B81AA71AB9005EFFA3 /* Info.plist */,
 				F40BB3B91AA71AB9005EFFA3 /* main.m */,
 			);
@@ -160,6 +165,7 @@
 			files = (
 				F40BB3BD1AA71AB9005EFFA3 /* AppDelegate.m in Sources */,
 				F40BB3E21AA71AE8005EFFA3 /* OTSDatabaseManager.m in Sources */,
+				F4A86D001ABC418D00959E15 /* DatabaseManager.swift in Sources */,
 				F40BB3C01AA71AB9005EFFA3 /* MyDataModel.xcdatamodeld in Sources */,
 				F40BB3C31AA71AB9005EFFA3 /* OTSMainViewController.m in Sources */,
 				F40BB3BA1AA71AB9005EFFA3 /* main.m in Sources */,
@@ -270,9 +276,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CoreDataStackSetup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = CoreDataStackSetup;
+				SWIFT_OBJC_BRIDGING_HEADER = "CoreDataStackSetup/CoreDataStackSetup-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -280,9 +289,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CoreDataStackSetup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = CoreDataStackSetup;
+				SWIFT_OBJC_BRIDGING_HEADER = "CoreDataStackSetup/CoreDataStackSetup-Bridging-Header.h";
 			};
 			name = Release;
 		};
