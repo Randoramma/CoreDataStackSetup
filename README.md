@@ -1,5 +1,10 @@
 # CoreDataStackSetup
-A rough example of how to set up a Core Data stack based on the talk by Marcus Zarra ([@mzarra](https://twitter.com/mzarra)) at MCE 2015 (https://www.youtube.com/watch?v=ckbke8vjHMw).
+
+*Please also see Marcus' own blog post and code explaining his own Core Data stack at [http://martiancraft.com/blog/2015/03/core-data-stack/](http://martiancraft.com/blog/2015/03/core-data-stack/).*
+
+---
+
+This is a rough example of how to set up a Core Data stack based on the talk by Marcus Zarra ([@mzarra](https://twitter.com/mzarra)) at MCE 2015 (https://www.youtube.com/watch?v=ckbke8vjHMw).
 
 **This code has not been checked by or approved by Marcus, it is simply my interpretation of his talk.**
 
