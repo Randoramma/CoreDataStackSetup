@@ -5,11 +5,13 @@ typealias DatabaseManagerCompletionHandler = (result: Bool, failureError: NSErro
 
 class DatabaseManager {
 
+  private let fileName = "MyDataModel"
+	
   private(set) var mainThreadManagedObjectContext: NSManagedObjectContext
   private var saveManagedObjectContext: NSManagedObjectContext
   
-    let modelURL = NSBundle.mainBundle().URLForResource("MyDataModel", withExtension: "momd")!
   init (completion: DatabaseManagerCompletionHandler) {
+    let modelURL = NSBundle.mainBundle().URLForResource(self.fileName, withExtension: "momd")!
     let mom = NSManagedObjectModel(contentsOfURL: modelURL)!
 
     var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: mom)
@@ -26,7 +28,7 @@ class DatabaseManager {
     dispatch_async(queue, { () -> Void in
       let folderUrls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
       let folderUrl = folderUrls[folderUrls.count-1] as! NSURL
-      let dataFileUrl = folderUrl.URLByAppendingPathComponent("MyDataFile.sqlite")
+      let dataFileUrl = folderUrl.URLByAppendingPathComponent(self.fileName).URLByAppendingPathExtension("sqlite")
     
       var error: NSError? = nil
       let storeOptions = [ NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true ]
