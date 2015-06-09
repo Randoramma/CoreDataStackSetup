@@ -10,7 +10,7 @@
 
 @implementation OTSDatabaseManager
 
-- (void)setupCoreDataStackWithCompletionHandler:(OTSDatabaseManagerStackSetupCompletionHandler)handler {
+- (void)setupCoreDataStackWithCompletionHandler:(OTSDatabaseManagerCompletionHandler)handler {
   if ([self saveManagedObjectContext]) return;
   
   NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"MyDataModel" withExtension:@"momd"];
@@ -72,7 +72,7 @@
   });
 }
 
-- (void)saveDataWithCompletionHandler:(OTSDatabaseManagerSaveCompletionHandler)handler
+- (void)saveDataWithCompletionHandler:(OTSDatabaseManagerCompletionHandler)handler
 {
   if (![NSThread isMainThread]) { //Always start from the main thread
     dispatch_sync(dispatch_get_main_queue(), ^{
