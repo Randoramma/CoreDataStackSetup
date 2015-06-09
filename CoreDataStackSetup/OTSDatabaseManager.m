@@ -9,15 +9,32 @@ static NSString * const kOTSDataBaseManagerFileName = @"MyDataModel";
 
 @property (strong, nonatomic) NSManagedObjectContext *mainThreadManagedObjectContext;
 @property (strong, nonatomic) NSManagedObjectContext *saveManagedObjectContext;
+@property (strong, nonatomic) NSString *modelName;
 
 @end
 
 @implementation OTSDatabaseManager
 
+- (instancetype)initWithModelName:(NSString *)modelName
+{
+	self = [super init];
+	
+	if (self) {
+		_modelName = modelName;
+	}
+	
+	return self;
+}
+
+- (instancetype)init
+{
+	return [self initWithModelName:kOTSDataBaseManagerFileName];
+}
+
 - (void)setupCoreDataStackWithCompletionHandler:(OTSDatabaseManagerCompletionHandler)handler {
   if ([self saveManagedObjectContext]) return;
   
-  NSURL *modelURL = [[NSBundle mainBundle] URLForResource:kOTSDataBaseManagerFileName withExtension:@"momd"];
+  NSURL *modelURL = [[NSBundle mainBundle] URLForResource:self.modelName withExtension:@"momd"];
   if (!modelURL) {
     NSError *customError = nil; //Return a custom error
     handler(NO, customError);
@@ -58,7 +75,7 @@ static NSString * const kOTSDataBaseManagerFileName = @"MyDataModel";
         handler(NO, customError);
       });
     }
-    storeURL = [[storeURL URLByAppendingPathComponent:kOTSDataBaseManagerFileName] URLByAppendingPathExtension:@"sqlite"];
+    storeURL = [[storeURL URLByAppendingPathComponent:self.modelName] URLByAppendingPathExtension:@"sqlite"];
     
     NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption: @YES, NSInferMappingModelAutomaticallyOption: @YES };
     NSPersistentStore *store = [psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error];
