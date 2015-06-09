@@ -1,16 +1,17 @@
 import UIKit
 import CoreData
 
-typealias DatabaseManagerStackSetupCompletionHandler = (result: Bool, failureError: NSError?) -> Void
-typealias DatabaseManagerSaveCompletionHandler = (result: Bool, failureError: NSError?) -> Void
+typealias DatabaseManagerCompletionHandler = (result: Bool, failureError: NSError?) -> Void
 
 class DatabaseManager {
 
+  private let fileName = "MyDataModel"
+	
   private(set) var mainThreadManagedObjectContext: NSManagedObjectContext
   private var saveManagedObjectContext: NSManagedObjectContext
   
-  init (completion: DatabaseManagerStackSetupCompletionHandler) {
-    let modelURL = NSBundle.mainBundle().URLForResource("MyDataModel", withExtension: "momd")!
+  init (completion: DatabaseManagerCompletionHandler) {
+    let modelURL = NSBundle.mainBundle().URLForResource(self.fileName, withExtension: "momd")!
     let mom = NSManagedObjectModel(contentsOfURL: modelURL)!
 
     var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: mom)
@@ -27,7 +28,7 @@ class DatabaseManager {
     dispatch_async(queue, { () -> Void in
       let folderUrls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
       let folderUrl = folderUrls[folderUrls.count-1] as! NSURL
-      let dataFileUrl = folderUrl.URLByAppendingPathComponent("MyDataFile.sqlite")
+      let dataFileUrl = folderUrl.URLByAppendingPathComponent(self.fileName).URLByAppendingPathExtension("sqlite")
     
       var error: NSError? = nil
       let storeOptions = [ NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true ]
@@ -49,7 +50,7 @@ class DatabaseManager {
     })
   }
   
-  func saveDataWithCompletionHandler(completion: DatabaseManagerSaveCompletionHandler) {
+  func saveDataWithCompletionHandler(completion: DatabaseManagerCompletionHandler) {
     if (!NSThread.isMainThread()) {
       dispatch_sync(dispatch_get_main_queue(), { () -> Void in
         self.saveDataWithCompletionHandler(completion)

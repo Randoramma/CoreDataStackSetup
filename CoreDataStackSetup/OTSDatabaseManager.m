@@ -1,6 +1,10 @@
 #import "OTSDatabaseManager.h"
 @import CoreData;
 
+
+static NSString * const kOTSDataBaseManagerFileName = @"MyDataModel";
+
+
 @interface OTSDatabaseManager()
 
 @property (strong, nonatomic) NSManagedObjectContext *mainThreadManagedObjectContext;
@@ -10,10 +14,10 @@
 
 @implementation OTSDatabaseManager
 
-- (void)setupCoreDataStackWithCompletionHandler:(OTSDatabaseManagerStackSetupCompletionHandler)handler {
+- (void)setupCoreDataStackWithCompletionHandler:(OTSDatabaseManagerCompletionHandler)handler {
   if ([self saveManagedObjectContext]) return;
   
-  NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"MyDataModel" withExtension:@"momd"];
+  NSURL *modelURL = [[NSBundle mainBundle] URLForResource:kOTSDataBaseManagerFileName withExtension:@"momd"];
   if (!modelURL) {
     NSError *customError = nil; //Return a custom error
     handler(NO, customError);
@@ -54,7 +58,7 @@
         handler(NO, customError);
       });
     }
-    storeURL = [storeURL URLByAppendingPathComponent:@"MyDataFile.sqlite"];
+    storeURL = [[storeURL URLByAppendingPathComponent:kOTSDataBaseManagerFileName] URLByAppendingPathExtension:@"sqlite"];
     
     NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption: @YES, NSInferMappingModelAutomaticallyOption: @YES };
     NSPersistentStore *store = [psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error];
@@ -72,7 +76,7 @@
   });
 }
 
-- (void)saveDataWithCompletionHandler:(OTSDatabaseManagerSaveCompletionHandler)handler
+- (void)saveDataWithCompletionHandler:(OTSDatabaseManagerCompletionHandler)handler
 {
   if (![NSThread isMainThread]) { //Always start from the main thread
     dispatch_sync(dispatch_get_main_queue(), ^{
