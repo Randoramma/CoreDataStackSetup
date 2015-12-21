@@ -119,7 +119,9 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = OTS;
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Otter Software Limited";
 				TargetAttributes = {
 					F40BB3B31AA71AB9005EFFA3 = {
@@ -214,6 +216,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -279,6 +282,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CoreDataStackSetup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ottersoftware.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = CoreDataStackSetup;
 				SWIFT_OBJC_BRIDGING_HEADER = "CoreDataStackSetup/CoreDataStackSetup-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -292,6 +296,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CoreDataStackSetup/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ottersoftware.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = CoreDataStackSetup;
 				SWIFT_OBJC_BRIDGING_HEADER = "CoreDataStackSetup/CoreDataStackSetup-Bridging-Header.h";
 			};
